@@ -633,10 +633,9 @@ namespace App.Library.Install
         {
             return !this.IsRunningInGlobalInstallLocation && CanUpdate(RunningVersion, latestVersion);
         }
-        public static bool CanUpdate(SemVersion? current, SemVersion? latest)
+        public static bool CanUpdate(SemVersion current, SemVersion? latest)
         {
             return
-                current != null &&
                 latest != null &&
                 SemVersion.ComparePrecedence(current, latest) == -1;
         }
@@ -650,7 +649,7 @@ namespace App.Library.Install
         {
             if (this.IsRunningInGlobalInstallLocation) return false;
             var installedVersion = this.GetFileVersion(this.UserInstallExePath);
-            return CanUpdate(installedVersion, latestVersion);
+            return installedVersion == null || CanUpdate(installedVersion, latestVersion);
         }
 
         public void StartApplicationFromInstallLocation()
