@@ -59,7 +59,7 @@ namespace App.Library.ViewModels
                     return
                         this.status.ExpirationDate.HasValue &&
                         (this.status.ExpirationDate.Value - DateTime.Now).Days <= Settings.Settings.DaysLeftForNotification;
-                } catch(Exception)
+                } catch
                 {
                     return false;
                 }

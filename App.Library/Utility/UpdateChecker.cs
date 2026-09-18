@@ -42,7 +42,7 @@ public static class UpdateChecker
         {
             NewVersion = SemVersion.Parse(UpdateData.CurrentVersion, SemVersionStyles.Strict);
         }
-        catch (Exception)
+        catch
         {
             Debug.WriteLine("Cannot parse version number from update data, continuing as if no update available; may happen if internet is down");
             return false;
@@ -125,7 +125,7 @@ public static class UpdateChecker
             var deserializedObject = JsonConvert.DeserializeObject<UpdateResponseDto>(response);
             UpdateData = deserializedObject?.UpdateRoot;
         }
-        catch (Exception)
+        catch
         {
             // maybe log this?!
         }

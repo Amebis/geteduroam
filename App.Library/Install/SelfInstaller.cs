@@ -213,7 +213,7 @@ namespace App.Library.Install
             {
                 RemoveWiFiConfigurationTask.Remove(omitRootCa: false);
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }
@@ -277,12 +277,15 @@ namespace App.Library.Install
                 // Actually, let's do that anyway, so rollback gets easier.
 
                 var tryDelete = false;
-                SemVersion? version = null;
+                SemVersion? version;
                 try
                 {
                     version = this.GetFileVersion(this.UserInstallExePath);
                 }
-                catch (Exception) {}
+                catch
+                {
+                    version = null;
+                }
 
                 var moveTarget = version == null ? null
                     : this.UserInstallDir + Path.DirectorySeparatorChar + this.applicationIdentifier + "-" + version + ".exe";
@@ -386,7 +389,7 @@ namespace App.Library.Install
                 System.IO.File.Move(path, moveTarget);
                 return true;
             }
-            catch (Exception)
+            catch
             {
                 return false;
             }

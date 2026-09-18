@@ -34,7 +34,7 @@ namespace App.Library.ViewModels
             {
                 await IdentityProviderDownloader.Instance.LoadProviders();
             }
-            catch (Exception)
+            catch
             {
                 Debug.WriteLine("Preloading discovery failed. Will retry on user interaction. This may happen when the internet connection is down.");
             }

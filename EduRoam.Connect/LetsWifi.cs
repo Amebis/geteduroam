@@ -373,7 +373,7 @@ namespace EduRoam.Connect
 
             // should never fail, since we abort if CA installations are needed
             try { installer.InstallCertificates(); }
-            catch (Exception)
+            catch
             {
                 return RefreshResponse.Failed;
             }
