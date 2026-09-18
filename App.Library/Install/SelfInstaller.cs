@@ -39,9 +39,9 @@ namespace App.Library.Install
             {
                 DisplayName = Settings.Settings.ApplicationName,  // [REQUIRED] ProductName
                 Publisher = Settings.Settings.Publisher,  // [REQUIRED] Manufacturer
-                Version = RunningVersion?.ToString() ?? "",
-                VersionMajor = RunningVersion?.Major.ToString() ?? "",
-                VersionMinor = RunningVersion?.Minor.ToString() ?? "",
+                Version = RunningVersion.ToString(),
+                VersionMajor = RunningVersion.Major.ToString(),
+                VersionMinor = RunningVersion.Minor.ToString(),
                 HelpLink = Settings.Settings.HelpUrl,  // ARPHELPLINK
                 HelpTelephone = null!,  // ARPHELPTELEPHONE
                 InstallSource = null!,  // SourceDir
@@ -142,8 +142,8 @@ namespace App.Library.Install
         {
             get => this.IsGloballyInstalled ? this.GlobalInstallExePath : this.IsUserInstalled ? this.UserInstallExePath : null;
         }
-        public static SemVersion? RunningVersion { 
-            get => _getFileVersion(RunningExePath); 
+        public static SemVersion RunningVersion {
+            get => _getFileVersion(RunningExePath) ?? new SemVersion(0, 0, 0);
         }
 
         /// <summary>
@@ -693,7 +693,7 @@ namespace App.Library.Install
             }
         }
 
-        public SemVersion? GetRunningVersion() => RunningVersion;
+        public SemVersion GetRunningVersion() => RunningVersion;
         #endregion
     }
 
