@@ -32,8 +32,8 @@ public static class UpdateChecker
 
         await DownloadUpdateJsonAsync();
         if (UpdateData == null ||
-            UpdateData.CurrentVersion == null || string.IsNullOrWhiteSpace(UpdateData.CurrentVersion) ||
-            UpdateData.MinimalSupportedVersion == null || string.IsNullOrWhiteSpace(UpdateData.MinimalSupportedVersion))
+            string.IsNullOrWhiteSpace(UpdateData.CurrentVersion) ||
+            string.IsNullOrWhiteSpace(UpdateData.MinimalSupportedVersion))
         {
             return false;
         }
@@ -70,7 +70,7 @@ public static class UpdateChecker
     public static async Task DownloadUpdateAsync()
     {
         if (UpdateData == null ||
-            UpdateData.DownloadUrl == null || string.IsNullOrWhiteSpace(UpdateData.DownloadUrl))
+            string.IsNullOrWhiteSpace(UpdateData.DownloadUrl))
         {
             throw new InvalidOperationException("Cannot download update, no update data or URL available");
         }
