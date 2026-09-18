@@ -45,12 +45,8 @@ namespace Govroam.App
 
             var serviceProvider = ServicesConfiguration.ConfigureServices();
             var mainWindow = serviceProvider.GetService<MainWindow>();
-            if (mainWindow == null)
-            {
-                throw new Exception("MainWindow service not found.");
-            }
-            mainWindow.Show();
-            mainWindow.Activate();
+            mainWindow!.Show();
+            mainWindow!.Activate();
         }
     }
 }
